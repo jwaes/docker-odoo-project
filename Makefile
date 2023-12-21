@@ -3,9 +3,9 @@ $(error VERSION is not set)
 endif
 
 ifeq ($(TARGET), GHCR)
-    NAME=ghcr.io/camptocamp/docker-odoo-project
+    NAME=ghcr.io/jwaes/docker-odoo-project
 else
-    NAME=camptocamp/odoo-project
+    NAME=jwaes/odoo-project
 endif
 
 IMAGE=$(NAME):$(VERSION)

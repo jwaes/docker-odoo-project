@@ -1,5 +1,5 @@
-FROM python:3.10-bullseye 
-MAINTAINER Camptocamp
+FROM python:3.10-bookworm
+
 ARG UID=999
 # create the working directory and a place to set the logs (if wanted)
 RUN mkdir -p /odoo /var/log/odoo
@@ -31,13 +31,13 @@ ENV BUILD_PACKAGE \
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 # wkhtml-buster is kept as in official image, no deb available for bullseye
 RUN set -x; \
-        sh -c /install/package_odoo-bullseye.sh \
+        sh -c /install/package_odoo-bookworm.sh \
         && /install/setup-pip.sh \
         && /install/postgres.sh \
-        && /install/kwkhtml_client.sh \
-        && /install/kwkhtml_client_force_python3.sh \
+#         && /install/kwkhtml_client.sh \
+#         && /install/kwkhtml_client_force_python3.sh \
         && /install/dev_package.sh \
-        && python3 -m pip install --force-reinstall pip "setuptools<58" \
+#         && python3 -m pip install --force-reinstall pip "setuptools<58" \
         && pip install -r /odoo/base_requirements.txt --ignore-installed \
         && /install/purge_dev_package_and_cache.sh
 
